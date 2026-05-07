@@ -112,18 +112,8 @@ Aplicació desplegada a Render:
 
 ## Estructura del projecte
 
-web_matrona/
-│
-├── app/
-│   ├── templates/
-│   ├── models.py
-│   ├── routes.py
-│   └── __init__.py
-│
-├── requirements.txt
-├── config.py
-├── run.py
-└── Procfile
+- web_matrona/ requirements.txt, config.py, run.py, Procfile,app/==
+- ==> app/ __init__.py, models.py, routes.py, templates/
 
 ## Possibles millores futures
 
@@ -135,6 +125,6 @@ web_matrona/
 - Migració a MySQL/PostgreSQL
 
 ## Autor
-Marcos Luis 
-CIFP Pau Casesnoves
-Projecte Intermodular, Desplegament d'aplicacions Web
+- Marcos Luis 
+- CIFP Pau Casesnoves
+- Projecte Intermodular, Desplegament d'aplicacions Web
