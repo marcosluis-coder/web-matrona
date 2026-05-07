@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Les meves cites</h2>
+
+<table class="table table-striped">
+<tr>
+    <th>Data</th>
+    <th>Hora</th>
+    <th>Estat</th>
+    <th>Accions</th>
+</tr>
+
+{% for cita in citas %}
+<tr>
+    <td>{{ cita.data }}</td>
+    <td>{{ cita.hora }}</td>
+
+    <!-- ESTAT -->
+    <td>
+    {% if cita.estat == "pendent" %}
+        <span class="badge bg-warning text-dark">Pendent</span>
+
+    {% elif cita.estat == "confirmada" %}
+        <span class="badge bg-success">Confirmada</span>
+
+    {% else %}
+        <span class="badge bg-danger">Cancel·lada</span>
+    {% endif %}
+    </td>
+
+    <!-- ACCIONS -->
+    <td>
+    {% if cita.estat == "pendent" %}
+        
+        <a class="btn btn-danger btn-sm"
+           href="/cancelar-pacient/{{ cita.id }}">
+           Cancel·lar
+        </a>
+
+        <a class="btn btn-dark btn-sm"
+           href="/eliminar-cita/{{ cita.id }}">
+           Eliminar
+        </a>
+
+    {% else %}
+        <span class="text-muted">—</span>
+    {% endif %}
+    </td>
+
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

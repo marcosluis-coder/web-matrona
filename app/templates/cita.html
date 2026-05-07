@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Nova cita</h2>
+
+{% with messages = get_flashed_messages() %}
+  {% for msg in messages %}
+    <div class="alert alert-danger">
+        {{ msg }}
+    </div>
+  {% endfor %}
+{% endwith %}
+
+<!-- FORMULARI 1: seleccionar data -->
+<form method="GET" class="card p-3 mb-3">
+
+<div class="mb-3">
+<label class="form-label">Data</label>
+<input type="date" name="data" class="form-control" min="{{ today }}" value="{{ data_seleccionada or '' }}" required>
+</div>
+
+<button class="btn btn-secondary">
+Veure hores disponibles
+</button>
+
+</form>
+
+<!-- FORMULARI 2: crear cita -->
+{% if hores %}
+<form method="POST" class="card p-3">
+
+<input type="hidden" name="data" value="{{ data_seleccionada }}">
+
+<div class="mb-3">
+<label class="form-label">Hora</label>
+<select name="hora" class="form-select" required>
+  <option value="">---</option>
+  {% for hora in hores %}
+  <option value="{{ hora }}">{{ hora }}</option>
+  {% endfor %}
+</select>
+</div>
+
+<button class="btn btn-primary">
+Reservar cita
+</button>
+
+</form>
+{% endif %}
+
+{% endblock %}

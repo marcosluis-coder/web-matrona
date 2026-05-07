@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Matrona</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+<div class="container-fluid">
+    <span class="navbar-brand">Web Matrona</span>
+
+    {% if current_user.is_authenticated %}
+        <div>
+            <a class="btn btn-light btn-sm" href="/">Home</a>
+            <a class="btn btn-light btn-sm" href="/cita">Nova cita</a>
+            <a class="btn btn-light btn-sm" href="/mis-citas">Les meves cites</a>
+            <a class="btn btn-info btn-sm" href="/calculadora">Calculadora</a>
+
+            {% if current_user.rol == "comare" %}
+                <a class="btn btn-warning btn-sm" href="/totes-cites">Agenda</a>
+            {% endif %}
+
+            <a class="btn btn-danger btn-sm" href="/logout">Logout</a>
+        </div>
+    {% endif %}
+    {% if current_user.rol == "comare" %}
+     <a class="btn btn-info btn-sm" href="/dashboard">Dashboard</a>
+     {% endif %}
+</div>
+</nav>
+
+<div class="container mt-4">
+{% block content %}
+{% endblock %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

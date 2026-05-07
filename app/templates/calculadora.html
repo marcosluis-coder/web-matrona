@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Calculadores</h2>
+
+<div class="row">
+
+<!-- 🟣 EMBARÀS -->
+<div class="col-md-6">
+<form method="POST" class="card p-3">
+
+<h4>Data probable de part</h4>
+
+<input type="hidden" name="tipus" value="embaras">
+
+<div class="mb-3">
+<label>Data última regla</label>
+<input type="date" name="data" class="form-control" required>
+</div>
+
+<button class="btn btn-primary">Calcular</button>
+
+{% if fpp %}
+<div class="alert alert-success mt-3">
+FPP: {{ fpp }}
+</div>
+{% endif %}
+
+</form>
+</div>
+
+<!-- 🔵 CICLE -->
+<div class="col-md-6">
+<form method="POST" class="card p-3">
+
+<h4>Propera regla</h4>
+
+<input type="hidden" name="tipus" value="cicle">
+
+<div class="mb-3">
+<label>Data última regla</label>
+<input type="date" name="data" class="form-control" required>
+</div>
+
+<button class="btn btn-info">Calcular</button>
+
+{% if propera_regla %}
+<div class="alert alert-info mt-3">
+Propera regla: {{ propera_regla }}
+</div>
+{% endif %}
+
+</form>
+</div>
+
+</div>
+
+{% endblock %}

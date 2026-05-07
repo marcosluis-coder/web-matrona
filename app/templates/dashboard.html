@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Dashboard Comare</h2>
+
+<div class="row mb-4">
+
+<div class="col">
+<div class="card text-center bg-warning">
+<div class="card-body">
+<h5>Pendents</h5>
+<h2>{{ pendents }}</h2>
+</div>
+</div>
+</div>
+
+<div class="col">
+<div class="card text-center bg-success text-white">
+<div class="card-body">
+<h5>Confirmades</h5>
+<h2>{{ confirmades }}</h2>
+</div>
+</div>
+</div>
+
+<div class="col">
+<div class="card text-center bg-danger text-white">
+<div class="card-body">
+<h5>Cancel·lades</h5>
+<h2>{{ cancelades }}</h2>
+</div>
+</div>
+</div>
+
+</div>
+
+---
+
+<h4>Cites d'avui</h4>
+
+<table class="table">
+<tr>
+    <th>Hora</th>
+    <th>Pacient</th>
+    <th>Estat</th>
+</tr>
+
+{% for cita in cites_avui %}
+<tr>
+    <td>{{ cita.hora }}</td>
+    <td>{{ cita.usuari.nom }}</td>
+    <td>{{ cita.estat }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<h4>Estadístiques de cites</h4>
+
+<canvas id="graficoCitas"></canvas>
+
+<script>
+// @ts-ignore
+document.addEventListener("DOMContentLoaded", function() {
+
+    const canvas = document.getElementById('graficoCitas');
+
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Pendents', 'Confirmades', 'Cancel·lades'],
+            datasets: [{
+                data: {{ [pendents, confirmades, cancelades] | tojson }},
+                backgroundColor: ['orange', 'green', 'red']
+            }]
+        }
+    });
+
+});
+</script>
+
+{% endblock %}
